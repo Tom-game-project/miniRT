@@ -19,7 +19,6 @@ VEC3_SRC = \
 	   src/vec3/init.c
 
 SRC = \
-      $(MAIN_SRC)\
       $(TEST_TOOLS_SRC)\
       $(VEC3_SRC)\
 
@@ -36,27 +35,34 @@ NAME = miniRT
 all: $(NAME)
 
 
-debug: CFLAGS+=$(DEBUGFLAGS)
-debug: $(NAME)
-
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -Iinclude $(OBJ) -o $(NAME)
-
 %.o: %.c
 	$(CC) $(CFLAGS) -Iinclude -c $< -o $@
 
 
-test: $(OBJ) $(TEST_OBJ)
+debug: CFLAGS+=$(DEBUGFLAGS)
+debug: $(NAME)
+
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -Iinclude $(OBJ) -o $(NAME) $(MAIN_SRC)
+
+
+test: debug $(TEST_OBJ)
 	$(CC) $(CFLAGS) -Iinclude -o $(TEST_NAME) $(OBJ) $(TEST_OBJ)
+	./test_
 
 
 clean: 
 	$(RM) $(RMFLAGS) $(OBJ)
 
+fclean: clean 
+	$(RM) $(RMFLAGS) $(NAME)
+
+re: fclean all
 
 # minilibx install rule
 install_mlx:
 	wget $(MLX_URL)
 	tar -xzvf minilibx-linux.tgz
 
-.PHONY: all install_mlx clean debug
+.PHONY: all clean fclean re debug install_mlx
