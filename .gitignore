@@ -1,0 +1,15 @@
+
+
+
+# vim
+
+*.swp
+*.swo
+# bin
+*.o
+*.out
+test_
+example_
+
+# minilibx
+*.tgz
