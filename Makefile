@@ -16,7 +16,18 @@ TEST_TOOLS_SRC = \
 		 src/test_tools/debug_dprintf.c
 
 VEC3_SRC = \
-	   src/vec3/init.c
+	   src/vec3/init.c\
+	   src/vec3/f32_add.c\
+	   src/vec3/f32_sub.c\
+	   src/vec3/f32_mul.c\
+	   src/vec3/f32_div.c\
+	   src/vec3/vec3_assign.c\
+	   src/vec3/vec3_calc_assign.c\
+	   src/vec3/vec3f32_add.c\
+	   src/vec3/vec3f32_sub.c\
+	   src/vec3/vec3f32_print.c\
+	   src/vec3/vec3f32_init.c\
+
 
 SRC = \
       $(TEST_TOOLS_SRC)\
